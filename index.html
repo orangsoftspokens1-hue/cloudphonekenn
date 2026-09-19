@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cloud Phone</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f4f6fa;color:#15171a;font-family:Arial,sans-serif}.wrap{max-width:1050px;margin:auto;padding:22px 15px 50px}
+header,.panel,.phone{background:#fff;border:1px solid #e4e7eb;border-radius:20px;box-shadow:0 8px 30px #0000000b}
+header{padding:22px}h1{margin:0 0 6px;font-size:29px}.sub{margin:0;color:#68707a}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:17px}
+button{border:0;border-radius:12px;padding:12px 16px;font-weight:700;cursor:pointer}.primary{background:#111;color:#fff}.secondary{background:#edf0f3;color:#111}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:16px;margin-top:16px}.phone{padding:14px}.phonebar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.status{display:flex;align-items:center;gap:7px;font-size:13px;color:#68707a}.dot{width:9px;height:9px;border-radius:50%;background:#aab0b6}.dot.on{background:#19a65a}
+.screen{position:relative;width:100%;aspect-ratio:9/16;max-height:680px;background:#111;border-radius:17px;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff}
+.screen-inner{text-align:center;padding:25px}.android{font-size:54px;margin-bottom:12px}.screen h2{margin:0 0 8px}.screen p{margin:0;color:#bfc5cc;font-size:13px;line-height:1.5}
+.fake-home{display:none;width:100%;height:100%;padding:25px;background:linear-gradient(160deg,#151a22,#252c38)}.fake-home h2{margin:0 0 20px}
+.app-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.app{background:#ffffff16;border:1px solid #ffffff1c;border-radius:16px;padding:15px;text-align:center}.icon{font-size:28px}.app small{display:block;margin-top:7px;color:#d5dae0}
+.panel{padding:18px}.panel h3{margin:0 0 15px}.row{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid #edf0f2;font-size:14px}.row:last-child{border-bottom:0}.value{font-weight:700}
+.info{margin-top:14px;padding:12px;border-radius:12px;background:#f1f3f5;color:#656c75;font-size:12px;line-height:1.5}.full{width:100%;margin-top:12px}footer{text-align:center;color:#8a9097;font-size:12px;margin-top:22px}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.screen{max-height:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><h1>☁️ Cloud Phone</h1><p class="sub">Android virtual phone — control dari browser</p>
+<div class="actions"><button class="primary" onclick="startCloud()">▶ Start Cloud Phone</button><button class="secondary" onclick="stopCloud()">■ Stop</button></div></header>
+<div class="layout">
+<section class="phone"><div class="phonebar"><strong>Virtual Android</strong><div class="status"><span id="dot" class="dot"></span><span id="status">Offline</span></div></div>
+<div class="screen">
+<div id="offline" class="screen-inner"><div class="android">🤖</div><h2>Cloud Phone</h2><p>Tekan Start Cloud Phone untuk memulai tampilan virtual.</p></div>
+<div id="home" class="fake-home"><h2>Virtual Android</h2><div class="app-grid"><div class="app"><div class="icon">🎮</div><small>Game</small></div><div class="app"><div class="icon">🌐</div><small>Browser</small></div><div class="app"><div class="icon">⚙️</div><small>Settings</small></div></div></div>
+</div></section>
+<aside class="panel"><h3>Cloud Info</h3><div class="row"><span>Status</span><span class="value" id="infoStatus">Offline</span></div><div class="row"><span>Android</span><span class="value">Virtual</span></div><div class="row"><span>Connection</span><span class="value" id="connection">Waiting</span></div><div class="row"><span>Session</span><span class="value" id="session">—</span></div>
+<button class="secondary full" onclick="fullscreenPhone()">⛶ Fullscreen</button>
+<div class="info">Ini prototype tampilan cloud phone. HTML/JavaScript ini belum menjalankan Android sungguhan. Cloud phone nyata membutuhkan server Android dan streaming, misalnya WebRTC.</div></aside>
+</div><footer>Cloud Phone Web • Prototype</footer></div>
+<script>
+function startCloud(){document.getElementById('offline').style.display='none';document.getElementById('home').style.display='block';document.getElementById('dot').classList.add('on');document.getElementById('status').textContent='Online';document.getElementById('infoStatus').textContent='Online';document.getElementById('connection').textContent='Connected';document.getElementById('session').textContent='Active'}
+function stopCloud(){document.getElementById('offline').style.display='block';document.getElementById('home').style.display='none';document.getElementById('dot').classList.remove('on');document.getElementById('status').textContent='Offline';document.getElementById('infoStatus').textContent='Offline';document.getElementById('connection').textContent='Waiting';document.getElementById('session').textContent='—'}
+function fullscreenPhone(){const e=document.querySelector('.screen');if(document.fullscreenElement)document.exitFullscreen();else e.requestFullscreen?.()}
+</script>
+</body></html>
